@@ -6,7 +6,9 @@ create or replace function pgr_fn."uuidV7ToTs"("uuidInput" uuid)
     returns timestamp
     security definer
     language plpgsql
-    stable
+    immutable
+    leakproof
+    strict
     parallel safe
     cost 8
 as
