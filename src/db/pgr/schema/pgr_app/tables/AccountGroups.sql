@@ -3,7 +3,7 @@
 -- drop table if exists pgr_app."AccountGroups";
 -- select * from pgr_app."AccountGroups";
 
-create table pgr_app."AccountGroups"
+create table if not exists pgr_app."AccountGroups"
 (
     "accountGroupId"      uuid        default pgr_fn."genUuidV7"() not null
         constraint "pkAccountGroups" primary key,
