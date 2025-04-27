@@ -8,6 +8,7 @@ create or replace function pgr_fn."uuidV7ToTs"("uuidInput" uuid)
     language plpgsql
     stable
     parallel safe
+    cost 8
 as
 $$
 declare
