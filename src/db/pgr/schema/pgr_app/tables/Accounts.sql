@@ -5,16 +5,17 @@
 
 create table if not exists pgr_app."Accounts"
 (
-    "accountId"         uuid         default pgr_fn."genUuidV7"()                                 not null,
-    "accountLogin"      varchar(128) default pgr_fn."genUuidV7"()::varchar                        not null,
+    "accountId"         uuid         default pgr_fn."genUuidV7"()                                 not null
+        constraint "pkAccounts" primary key,
+    "accountLogin"      varchar(128) default pgr_fn."genUuidV7"()::varchar                        not null
+        constraint "uxAccountLogin" unique
+        constraint "chkAccountLoginMinLength" check (length(trim("accountLogin")) >= 8),
     "accountLoginHash"  varchar(512) default pgr_fn."toSimpleHash"(pgr_fn."genUuidV7"()::varchar) not null,
-    "accountAttributes" jsonb        default '{}'::jsonb                                          not null,
-    "accountPrivileges" jsonb        default '{}'::jsonb                                          not null,
-    "accountEnabled"    boolean      default true                                                 not null,
-    constraint "pkAccounts"
-        primary key ("accountId"),
-    constraint "uxAccountLogin"
-        unique ("accountLogin")
+    "accountAttributes" jsonb        default '{}'::jsonb                                          not null
+        constraint "checkAccountAttributesIsObject" check (jsonb_typeof("accountAttributes") = 'object'),
+    "accountPrivileges" jsonb        default '{}'::jsonb                                          not null
+        constraint "checkAccountPrivilegesIsObject" check (jsonb_typeof("accountAttributes") = 'object'),
+    "accountEnabled"    boolean      default true                                                 not null
 );
 
 alter table pgr_app."Accounts"
