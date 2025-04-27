@@ -8,7 +8,7 @@ create or replace function pgr_app."requireCanAccessLiveReport"("inAccountId" uu
     language plpgsql
     stable
     parallel safe
-    cost 15
+    cost 154
     leakproof
 as
 $$
