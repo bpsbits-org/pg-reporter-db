@@ -7,6 +7,7 @@ create or replace function pgr_fn."dbObjToParts"("inStringToParse" varchar)
     security definer
     language plpgsql
     immutable
+    leakproof
     parallel safe
     cost 4
 as
