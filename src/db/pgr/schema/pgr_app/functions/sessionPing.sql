@@ -26,6 +26,9 @@ begin
         @package pgReporter
     */
 
+    -- Purge expired sessions first
+    call pgr_app."sessionClearExpired"();
+
     -- Find session
     select
         acs."sessionStorageId",
