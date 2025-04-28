@@ -1,0 +1,10 @@
+src/db/pgr/schema/pgr_app/tables/Privileges.sql
+src/db/pgr/schema/pgr_app/tables/AccountGroups.sql
+src/db/pgr/schema/pgr_app/tables/AccountsHistory.sql
+src/db/pgr/schema/pgr_app/tables/Accounts.sql
+src/db/pgr/schema/pgr_app/tables/FailedAuthorizations.sql
+src/db/pgr/schema/pgr_app/tables/SessionsHistory.sql
+src/db/pgr/schema/pgr_app/tables/ActiveSessions.sql
+src/db/pgr/schema/pgr_app/tables/LastSeen.sql
+src/db/pgr/schema/pgr_app/tables/LiveReportGroups.sql
+src/db/pgr/schema/pgr_app/tables/LiveReports.sql

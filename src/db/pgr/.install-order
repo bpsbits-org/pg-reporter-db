@@ -1,0 +1,4 @@
+src/db/pgr/schema/pgr_fn/.install-order
+src/db/pgr/schema/pgr_app/.install-order
+src/db/pgr/schema/pgr_live/.install-order
+src/db/pgr/schema/pgr_store/.install-order

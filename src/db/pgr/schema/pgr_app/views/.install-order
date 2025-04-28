@@ -1,0 +1,4 @@
+src/db/pgr/schema/pgr_app/views/AccountDetails.sql
+src/db/pgr/schema/pgr_app/views/AccountMemberships.sql
+src/db/pgr/schema/pgr_app/views/ActiveAccounts.sql
+src/db/pgr/schema/pgr_app/views/DisabledAccounts.sql

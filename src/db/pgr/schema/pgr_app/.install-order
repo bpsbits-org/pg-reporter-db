@@ -1,0 +1,6 @@
+src/db/pgr/schema/pgr_app/pgr_app.sql
+src/db/pgr/schema/pgr_app/types/.install-order
+src/db/pgr/schema/pgr_app/tables/.install-order
+src/db/pgr/schema/pgr_app/procedures/.install-order
+src/db/pgr/schema/pgr_app/functions/.install-order
+src/db/pgr/schema/pgr_app/views/.install-order
