@@ -24,14 +24,14 @@ begin
         @package pgReporter
     */
 
-    if pgr_app."isAccountAvailable"("inAccountId") = false or
+    if pgr_app."accountIsAvailable"("inAccountId") = false or
        pgr_app."liveReportExists"("inLiveReportId") = false
     then
         return false;
     end if;
 
     "isSuperUser" = pgr_app."isSuperUser"("inAccountId");
-    "accountMembership" = pgr_app."getAccountMembership"("inAccountId");
+    "accountMembership" = pgr_app."accountGetMembership"("inAccountId");
 
     return exists(
         --
