@@ -1,6 +1,8 @@
 -- pgr_fn.toScramSH256
 
 -- drop function if exists pgr_fn."toScramSH256"(varchar);
+-- select pgr_fn."toScramSH256"(null);
+-- select pgr_fn."toScramSH256"('test');
 
 create or replace function pgr_fn."toScramSH256"("inStringToHash" varchar)
     returns varchar
@@ -12,11 +14,11 @@ create or replace function pgr_fn."toScramSH256"("inStringToHash" varchar)
 as
 $$
 declare
-    "tmpRoleName"   text := 'temp_scram_gen_' || replace(gen_random_uuid()::text, '-', '');
-    "scramPassword" text;
+    "tmpRoleName"   varchar = 'temp_scram_gen_' || replace(gen_random_uuid()::text, '-', '');
+    "scramPassword" varchar;
 begin
     /**
-        Generates an SHA-256 encrypted string.
+        Generates the SCRAM-SHA-256 encrypted string.
         Used for encrypted passwords storage.
         @author bpsbits.org
         @package pgReporter
@@ -30,27 +32,26 @@ begin
     end if;
 
     -- Create a temporary role with the provided string
-    execute format('CREATE ROLE %I WITH LOGIN ENCRYPTED PASSWORD %L', "tmpRoleName", "inStringToHash");
+    execute format('CREATE ROLE %I WITH NOLOGIN PASSWORD %L', "tmpRoleName", "inStringToHash");
 
     -- Retrieve the SCRAM-SHA-256 hashed password from pg_authid
     select
-        rolpassword
+        rolpassword::varchar
     into "scramPassword"
     from pg_authid
     where
-        rolname = "tmpRoleName"
+        rolname = "tmpRoleName";
 
     -- Drop the temporary role
     execute format('DROP ROLE %I', "tmpRoleName");
 
     -- Return the SCRAM-SHA-256 string
-    return "scramPassword"::varchar;
+    return "scramPassword";
 end;
 $$;
 
 alter function pgr_fn."toScramSH256"(varchar) owner to postgres;
 
-grant execute on function pgr_fn."toScramSH256"(varchar) to public;
-
 comment on function pgr_fn."toScramSH256"
-    is 'Creates SHA-256 encrypted string';
+    is 'Creates SCRAM-SHA-256 encrypted string';
+
