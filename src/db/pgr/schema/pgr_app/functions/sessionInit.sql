@@ -52,7 +52,7 @@ begin
     end if;
 
     -- Validate user credentials
-    "accountId" = pgr_app."validateLogin"("sanLogin", "sanPswHash");
+    "accountId" = pgr_app."accountValidateLogin"("sanLogin", "sanPswHash");
     if "accountId" is null then
         "fnResult" = ("fnResult" || jsonb_build_object('message', 'Invalid login credentials'));
         perform pgr_app."sessionAuthFailed"("sanLogin", ("fnResult" ->> 'message')::varchar, "sanClientInfo");

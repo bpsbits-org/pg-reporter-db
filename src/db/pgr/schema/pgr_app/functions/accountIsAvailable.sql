@@ -1,9 +1,9 @@
--- pgr_app.isAccountAvailable
+-- pgr_app.accountIsAvailable
 
--- drop function if exists pgr_app."isAccountAvailable"(uuid);
--- select pgr_app."isAccountAvailable"(null);
+-- drop function if exists pgr_app."accountIsAvailable"(uuid);
+-- select pgr_app."accountIsAvailable"(null);
 
-create or replace function pgr_app."isAccountAvailable"("inAccountId" uuid)
+create or replace function pgr_app."accountIsAvailable"("inAccountId" uuid)
     returns boolean
     security definer
     language sql
@@ -31,9 +31,9 @@ select
     );
 $$;
 
-alter function pgr_app."isAccountAvailable"(uuid) owner to postgres;
+alter function pgr_app."accountIsAvailable"(uuid) owner to postgres;
 
-grant execute on function pgr_app."isAccountAvailable"(uuid) to app_pgr_api;
+grant execute on function pgr_app."accountIsAvailable"(uuid) to app_pgr_api;
 
-comment on function pgr_app."isAccountAvailable"
+comment on function pgr_app."accountIsAvailable"
     is 'Checks whether the specified account is available';

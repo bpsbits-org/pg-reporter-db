@@ -1,9 +1,9 @@
--- pgr_app.validateLogin
+-- pgr_app.accountValidateLogin
 
--- drop function if exists pgr_app."validateLogin"(varchar, varchar);
--- select pgr_app."validateLogin"(null, null);
+-- drop function if exists pgr_app."accountValidateLogin"(varchar, varchar);
+-- select pgr_app."accountValidateLogin"(null, null);
 
-create or replace function pgr_app."validateLogin"("inLogin" varchar, "inPswHash" varchar)
+create or replace function pgr_app."accountValidateLogin"("inLogin" varchar, "inPswHash" varchar)
     returns uuid
     security definer
     language sql
@@ -28,9 +28,9 @@ where
   and acc."accountLoginHash" = "inPswHash";
 $$;
 
-alter function pgr_app."validateLogin"(varchar, varchar) owner to postgres;
+alter function pgr_app."accountValidateLogin"(varchar, varchar) owner to postgres;
 
-grant execute on function pgr_app."validateLogin"(varchar, varchar) to app_pgr_api;
+grant execute on function pgr_app."accountValidateLogin"(varchar, varchar) to app_pgr_api;
 
-comment on function pgr_app."validateLogin"
+comment on function pgr_app."accountValidateLogin"
     is 'Validates login credentials and returns account ID if valid';

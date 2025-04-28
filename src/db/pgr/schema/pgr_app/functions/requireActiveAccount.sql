@@ -19,7 +19,7 @@ $$
         @package pgReporter
     */
 begin
-    if pgr_app."isAccountAvailable"("inAccountId") = false then
+    if pgr_app."accountIsAvailable"("inAccountId") = false then
         raise exception using
             message = 'Account is not active or does not exist',
             errcode = '22023',
